@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Next.js Project Template
 
-## Getting Started
+This repository provides a **scalable Next.js starter template** with production-ready configurations, common utilities, and conventions for faster development.
 
-First, run the development server:
+## 📂 Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+/app
+  /[routes]       → App Router pages
+  /layout.tsx     → Root layout
+  /page.tsx       → Default page
+/auth             → Next auth
+/components       → Reusable components
+/hooks            → Custom React hooks
+/react-query      → React Query
+/seo              → SEO for default page
+/state            → Store (Zustand / Redux / Context)
+/tests            → Unit and integration tests
+/types            → Global TypeScript definitions
+/utils            → Helper utilities
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Path aliases** are configured (`@/components`, `@/state`, etc.) for clean imports.
+- **Environment variables** managed with `.env.local`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Core Config
 
-## Learn More
+- **TypeScript** (strict mode enabled)
+- **ESLint + Prettier** (linting, formatting, import sorting, unused import cleanup)
+- **Husky + lint-staged** (pre-commit hooks)
+- **Dockerfile** included for containerized deployments
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📡 Data Fetching
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **React Query (TanStack Query)**
+  For client-side data fetching, caching, and sync.
+  → `lib/queryClient.ts` preconfigured
 
-## Deploy on Vercel
+- **Next.js Server Actions & API Routes**
+  Use for server-driven actions and backend endpoints. and use either actions or api route
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔐 Authentication
+
+- **NextAuth.js** configured with common providers (Google, GitHub, Credentials).
+- Supports **custom auth** integration if required.
+
+---
+
+## 🗂️ State Management
+
+- **Lightweight apps** → Zustand or Context Providers.
+- **Complex apps** → Redux Toolkit.
+
+---
+
+## 📋 Forms
+
+- **Formik** (with Yup/Zod for schema validation).
+
+---
+
+## 🎨 Styling & UI
+
+- **TailwindCSS** preconfigured.
+- **Custom Component Library** → we use our own components, not external UI libs like shadcn.
+- **Color configuration** managed via `./tailwind.config.js` + theme tokens.
+
+---
+
+## 🎬 Animations
+
+- **GSAP** → High-performance, complex animations.
+- **Motion** → Lightweight component-level animations.
+
+---
+
+## 🔍 SEO
+
+- **next-seo** for meta tags, structured data, and social previews.
+- Default configuration in `./src/seo/next-seo.config.ts`.
+
+---
+
+## 🧪 Testing
+
+- **Unit / Integration Tests** → Jest + ts-jest + React Testing Library in `./src/tests`.
+- **E2E Tests** → Playwright preconfigured in `./e2e`.
+
+Run tests:
+
+```bash
+npm run test        # unit/integration
+npm run test:e2e    # end-to-end
+```
+
+---
+
+## 🛠️ Developer Experience
+
+- **Error boundaries** and reusable loading states included.
+- **API client wrapper** (`fetch`) with interceptors for auth & error handling.
+- **Bundle Analyzer** (`@next/bundle-analyzer`) to inspect bundle size.
+- **Env validation** → `.env` schema check with Zod.
+
+---
+
+## 📦 Deployment
+
+- Works on **Vercel** out of the box.
+- Docker setup available for custom hosting:
+
+```bash
+docker build -t nextjs-template .
+docker run -p 3000:3000 nextjs-template
+```
+
+---
+
+## 📌 Optional Additions
+
+- 🔹 i18n support with `next-intl`
+- 🔹 Analytics (PostHog / Plausible / GA4)
+- 🔹 Error tracking (Sentry / Axiom)
+- 🔹 Performance profiling setup
