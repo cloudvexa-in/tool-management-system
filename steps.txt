@@ -1,0 +1,32 @@
+1. Customer Requirement
+The manufacturing process starts when a customer places an order. The customer provides product drawings, specifications, material details, quantity, and quality requirements. These details help the company understand what needs to be manufactured.
+2. Feasibility Study
+The engineering team checks whether the product can be manufactured using the available machines, tools, materials, and manpower. They also estimate the production time and identify any possible challenges before starting production.
+3. Cost Estimation
+The company calculates the total manufacturing cost by considering raw materials, machine time, labor, tooling, inspection, and other production expenses. A quotation is then prepared and shared with the customer.
+4. Customer Approval & Purchase Order
+If the customer accepts the quotation, they issue a Purchase Order (PO). This serves as the official confirmation to begin the manufacturing process.
+5. Sales Order Creation (ERP)
+The Purchase Order is entered into the ERP system, where a Sales Order is created. This helps manage production planning, inventory, procurement, and order tracking.
+6. New Product Development (NPD)
+If the product is new, the engineering team prepares all necessary documents, including drawings, process plans, tooling details, and inspection methods. This ensures the product can be manufactured correctly.
+7. Engineering Preparation
+The engineering team prepares the technical information required for production, such as CAD models, CAM programs, machining instructions, and quality standards.
+8. Bill of Materials (BOM) & Process Planning
+The Bill of Materials (BOM) lists all the raw materials and components required for production. Process planning defines the sequence of manufacturing operations and the machines to be used.
+9. Work Order Creation
+A Work Order is generated through the ERP system. It contains details such as the product, quantity, machine assignment, and production schedule, which guide the manufacturing team.
+10. Purchase & Material Receipt
+The required raw materials and tools are purchased from suppliers. After receiving them, the materials are inspected and stored before production begins.
+11. Production Planning & Control (PPC)
+The PPC team prepares the production schedule, assigns machines, and monitors production progress to ensure work is completed on time.
+12. Tool Preparation
+Before machining starts, the required cutting tools and holders are prepared and measured using a Tool Presetter to ensure accuracy and avoid machining errors.
+13. CNC Manufacturing
+The CNC machine manufactures the product by following the machining program created through CAM software. Operations such as drilling, turning, milling, and threading are performed automatically.
+14. In-Process Quality Inspection
+During production, quality checks are carried out to ensure the product meets the required dimensions and specifications. Any issues are identified and corrected immediately.
+15. Final Inspection
+After manufacturing is completed, the finished product undergoes a final quality inspection. Only products that meet all quality standards are approved for delivery.
+16. Finished Goods Store
+Approved products are packed, labeled, and stored in the finished goods warehouse until they are ready for shipment.

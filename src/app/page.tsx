@@ -1,211 +1,347 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from "next/link";
+import {
+  Building2,
+  Users,
+  Route,
+  PenTool,
+  Wrench,
+  Settings,
+  ArrowRight,
+  CheckCircle2,
+  BarChart3,
+  Globe2,
+  Cpu,
+  ShieldCheck,
+} from "lucide-react";
 
 export default function Home() {
   const features = [
     {
       title: "Organization Setup",
       description:
-        "Register and configure your organization with tenant-specific settings.",
-      icon: "🏢",
+        "Register and configure your organization with tenant-specific, isolated settings.",
+      icon: <Building2 className="h-6 w-6 text-indigo-600" />,
     },
     {
       title: "Employee & RBAC",
       description:
-        "Manage departments, employees, roles and permissions securely.",
-      icon: "👥",
+        "Manage departments, employees, and enforce granular role-based access controls.",
+      icon: <Users className="h-6 w-6 text-indigo-600" />,
     },
     {
       title: "Workflow Builder",
       description:
-        "Design manufacturing workflows using an interactive visual builder.",
-      icon: "🔄",
+        "Design intricate manufacturing workflows using an interactive visual node builder.",
+      icon: <Route className="h-6 w-6 text-indigo-600" />,
     },
     {
       title: "CAD/CAM Integration",
       description:
-        "Connect CAD/CAM software for streamlined production planning.",
-      icon: "📐",
+        "Seamlessly connect CAD/CAM software to streamline your production planning pipeline.",
+      icon: <PenTool className="h-6 w-6 text-indigo-600" />,
     },
     {
       title: "Hardware Calibration",
       description:
-        "Configure machines, industrial devices and communication protocols.",
-      icon: "🛠️",
+        "Configure machines, industrial devices, and robust communication protocols (OPC UA, MQTT).",
+      icon: <Wrench className="h-6 w-6 text-indigo-600" />,
     },
     {
       title: "Tool Configuration",
       description:
-        "Manage tools, production steps and machine mappings efficiently.",
-      icon: "⚙️",
+        "Manage tooling inventories, define production steps, and execute machine mappings.",
+      icon: <Settings className="h-6 w-6 text-indigo-600" />,
     },
   ];
 
   const onboardingSteps = [
     {
       number: "01",
-      title: "Organization Details",
-      description:
-        "Configure organization profile, tenant information and company details.",
+      title: "Profile & Identity",
+      description: "Define organization details and tenant workspace.",
     },
     {
       number: "02",
-      title: "Employees & Roles",
-      description:
-        "Create departments, add employees and assign roles & permissions.",
+      title: "Access Management",
+      description: "Provision users and strict role permissions.",
     },
     {
       number: "03",
-      title: "Visual Builder",
-      description:
-        "Configure workflow, CAD/CAM integration, calibration and tool setup.",
+      title: "System Integration",
+      description: "Connect hardware, CAD/CAM, and build workflows.",
     },
     {
       number: "04",
-      title: "Review & Finish",
-      description: "Verify all configurations and complete tenant onboarding.",
+      title: "Validation",
+      description: "Verify configurations and deploy the environment.",
+    },
+  ];
+
+  const metrics = [
+    {
+      label: "Uptime SLA",
+      value: "99.99%",
+      icon: <ShieldCheck className="h-5 w-5" />,
+    },
+    {
+      label: "Global Edge Nodes",
+      value: "45+",
+      icon: <Globe2 className="h-5 w-5" />,
+    },
+    {
+      label: "Operations / Sec",
+      value: "10M+",
+      icon: <Cpu className="h-5 w-5" />,
+    },
+    {
+      label: "Data Processed",
+      value: "PB Scale",
+      icon: <BarChart3 className="h-5 w-5" />,
     },
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900">
       {/* ================= NAVBAR ================= */}
-
-      <nav className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-5">
-          <div>
-            <h1 className="text-2xl font-bold text-blue-700">CloudVexa</h1>
-
-            <p className="text-sm text-gray-500">
-              Smart Manufacturing Platform
-            </p>
+      <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm">
+              <span className="font-bold text-lg leading-none">O</span>
+            </div>
+            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+              OneScreen
+            </h1>
           </div>
-
-          <Link
-            href="/onboarding"
-            className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
-          >
-            Start Onboarding
-          </Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <Link
+              href="#features"
+              className="hover:text-slate-900 transition-colors"
+            >
+              Features
+            </Link>
+            <Link
+              href="#platform"
+              className="hover:text-slate-900 transition-colors"
+            >
+              Platform
+            </Link>
+            <Link
+              href="#security"
+              className="hover:text-slate-900 transition-colors"
+            >
+              Security
+            </Link>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/onboarding"
+              className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Start Onboarding
+            </Link>
+          </div>
         </div>
       </nav>
 
       {/* ================= HERO ================= */}
-
-      <section className="mx-auto flex max-w-7xl flex-col items-center px-8 py-24 text-center">
-        <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold tracking-wide text-blue-700">
-          Smart Manufacturing Platform
-        </span>
-
-        <h1 className="mt-6 text-6xl font-extrabold leading-tight text-gray-900">
-          Tool Management
-          <br />
-          System
-        </h1>
-
-        <p className="mt-5 text-xl font-medium text-blue-600">
-          Tenant Setup & Calibration (Admin Portal)
-        </p>
-
-        <p className="mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-          Digitize your manufacturing environment by onboarding organizations,
-          configuring employees, creating production workflows, integrating
-          CAD/CAM systems, calibrating hardware and managing tools—all through
-          one intelligent platform.
-        </p>
-
-        <div className="mt-12 flex flex-wrap justify-center gap-5">
-          <Link
-            href="/onboarding"
-            className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700"
-          >
-            🚀 Start Tenant Onboarding
-          </Link>
-
-          <button className="rounded-xl border border-gray-300 bg-white px-8 py-4 text-lg font-semibold transition hover:bg-gray-100">
-            Learn More
-          </button>
-        </div>
-      </section>
-
-      {/* ================= FEATURES ================= */}
-
-      <section className="mx-auto max-w-7xl px-8 pb-24">
-        <div className="mb-14 text-center">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Core Platform Features
-          </h2>
-
-          <p className="mt-4 text-lg text-gray-500">
-            Everything required to onboard and configure your manufacturing
-            organization.
-          </p>
+      <section className="relative overflow-hidden pt-24 pb-32">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-2xl border bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
-            >
-              <div className="text-5xl">{feature.icon}</div>
-
-              <h3 className="mt-6 text-2xl font-semibold text-gray-900">
-                {feature.title}
-              </h3>
-
-              <p className="mt-3 leading-7 text-gray-600">
-                {feature.description}
-              </p>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-8 flex justify-center">
+              <span className="relative rounded-full px-3 py-1 text-sm leading-6 text-indigo-600 ring-1 ring-indigo-600/20 hover:ring-indigo-600/40 bg-indigo-50/50 backdrop-blur-sm transition-all">
+                Announcing OneScreen Platform v2.0{" "}
+                <Link href="#" className="font-semibold text-indigo-600">
+                  <span className="absolute inset-0" aria-hidden="true"></span>
+                  Read more <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </span>
             </div>
-          ))}
+            <h1 className="text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl">
+              Intelligent end-to-end manufacturing.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Digitize your shop floor. OneScreen unifies organization
+              onboarding, RBAC, CAD/CAM integration, and hardware calibration
+              into a single, high-performance platform.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/onboarding"
+                className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
+              >
+                Request Demo <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="#"
+                className="text-sm font-semibold leading-6 text-slate-900 hover:text-slate-600 transition-colors"
+              >
+                View Documentation <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ================= ONBOARDING JOURNEY ================= */}
-
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-gray-900">
-              Tenant Onboarding Journey
-            </h2>
-
-            <p className="mt-4 text-lg text-gray-500">
-              Complete your organization setup in four guided steps.
-            </p>
-          </div>
-
-          <div className="mt-16 flex flex-col items-center justify-center gap-6 lg:flex-row">
-            {onboardingSteps.map((step, index) => (
-              <div key={step.number} className="flex items-center">
-                <div className="w-72 rounded-2xl border border-gray-200 bg-white p-6 shadow-md transition duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white">
-                    {step.number}
-                  </div>
-
-                  <h3 className="mt-5 text-xl font-semibold text-gray-900">
-                    {step.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                    {step.description}
-                  </p>
+      {/* ================= METRICS ================= */}
+      <section className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {metrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="flex flex-col items-center justify-center text-center"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 mb-3">
+                  {metric.icon}
                 </div>
-
-                {index !== onboardingSteps.length - 1 && (
-                  <div className="mx-5 hidden h-1 w-16 rounded-full bg-blue-300 lg:block"></div>
-                )}
+                <dd className="text-3xl font-bold tracking-tight text-slate-900">
+                  {metric.value}
+                </dd>
+                <dt className="text-sm font-medium leading-6 text-slate-500 mt-1">
+                  {metric.label}
+                </dt>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* ================= FEATURES ================= */}
+      <section id="features" className="py-24 sm:py-32 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl sm:text-center mb-16">
+            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+              Platform Capabilities
+            </h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Everything you need to scale production
+            </p>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              OneScreen provides a robust suite of modules designed for modern
+              manufacturing environments, replacing disjointed legacy systems.
+            </p>
+          </div>
 
-      <footer className="border-t bg-gray-100 py-8">
-        <div className="mx-auto max-w-7xl text-center text-gray-600">
-          © 2026 CloudVexa • Tool Management System
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-12 lg:max-w-none lg:grid-cols-3">
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="flex flex-col rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200 hover:ring-indigo-200 hover:shadow-md transition-all"
+                >
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold leading-7 text-slate-900">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-2 flex-auto text-base leading-7 text-slate-600">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= ONBOARDING PIPELINE ================= */}
+      <section
+        id="platform"
+        className="py-24 bg-white border-t border-slate-200"
+      >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Streamlined Deployment Pipeline
+            </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              Go from zero to fully operational in hours, not weeks.
+            </p>
+          </div>
+
+          <div className="relative mx-auto mt-12 max-w-5xl">
+            {/* Connecting line */}
+            <div
+              className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 hidden md:block"
+              aria-hidden="true"
+            ></div>
+
+            <div className="relative grid grid-cols-1 gap-8 md:grid-cols-4">
+              {onboardingSteps.map((step, index) => (
+                <div
+                  key={step.number}
+                  className="relative flex flex-col items-center text-center"
+                >
+                  <div className="z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white border-2 border-indigo-600 text-indigo-600 shadow-sm font-bold text-lg">
+                    {step.number}
+                  </div>
+                  <h3 className="mt-6 text-base font-semibold text-slate-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-500 max-w-xs">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-slate-900 py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <div className="flex items-center gap-2">
+              <div className="flex h-6 w-6 items-center justify-center rounded bg-indigo-500 text-white">
+                <span className="font-bold text-xs leading-none">O</span>
+              </div>
+              <span className="text-lg font-semibold text-white tracking-tight">
+                OneScreen
+              </span>
+            </div>
+            <p className="text-sm text-slate-400">
+              &copy; {new Date().getFullYear()} OneScreen Inc. All rights
+              reserved.
+            </p>
+            <div className="flex gap-6">
+              <Link
+                href="#"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                Terms
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                Privacy
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
+              >
+                Status
+              </Link>
+            </div>
+          </div>
         </div>
       </footer>
     </main>
