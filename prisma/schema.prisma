@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  industry        String?
+  size            String?
+  region          String?
+  onboardingGraph Json?
+  enabledModules  String[] @default([])
+  createdAt       DateTime @default(now())
+
+  users User[]
+  roles Role[]
+}
+
+model User {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  email          String   @unique
+  passwordHash   String
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  roles        UserRole[]
+}
+
+model Role {
+  id             String @id @default(cuid())
+  organizationId String
+  name           String
+
+  organization Organization     @relation(fields: [organizationId], references: [id])
+  users        UserRole[]
+  permissions  RolePermission[]
+}
+
+model UserRole {
+  userId String
+  roleId String
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+}
+
+/// Global, seeded — not per-organization. One row per module x action.
+model Permission {
+  id        String @id @default(cuid())
+  moduleKey String
+  action    String
+  key       String @unique
+  label     String
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+}
