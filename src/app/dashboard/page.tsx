@@ -28,7 +28,7 @@ export default function Dashboard() {
     const totalRequired = steps.filter((s) => s.required).length;
 
     return (
-      <div className="min-h-screen bg-slate-50 p-8 font-sans text-slate-900">
+      <div className="p-8 font-sans text-slate-900">
         <div className="mx-auto max-w-4xl mt-12">
           <div className="mb-8">
             <h1 className="text-3xl font-bold tracking-tight">
@@ -112,7 +112,7 @@ export default function Dashboard() {
 
   // Dashboard content if onboarding is complete
   return (
-    <div className="min-h-screen bg-slate-50 p-8 font-sans text-slate-900">
+    <div className="p-8 font-sans text-slate-900">
       <div className="mx-auto max-w-7xl">
         <h1 className="text-3xl font-bold tracking-tight mb-8">Dashboard</h1>
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex items-center justify-center min-h-[400px]">
@@ -122,7 +122,8 @@ export default function Dashboard() {
               Organization Setup Complete!
             </h2>
             <p className="text-slate-500">
-              Your OneScreen workspace is ready for production.
+              Your OneScreen workspace is ready for production. Pick a module
+              from the sidebar to get started.
             </p>
           </div>
         </div>

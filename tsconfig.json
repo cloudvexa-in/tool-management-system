@@ -25,7 +25,8 @@
       "@utils/*": ["./src/utils/*"],
       "@types/*": ["./src/types/*"],
       "@seo/*": ["./src/seo/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@modules/*": ["./src/modules/*"]
     }
   },
   "include": [
