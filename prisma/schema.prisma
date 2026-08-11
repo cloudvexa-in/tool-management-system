@@ -13,26 +13,30 @@ datasource db {
 }
 
 model Organization {
-  id              String   @id @default(cuid())
-  name            String
-  industry        String?
-  size            String?
-  region          String?
-  onboardingGraph Json?
-  enabledModules  String[] @default([])
-  createdAt       DateTime @default(now())
+  id                    String    @id @default(cuid())
+  name                  String
+  industry              String?
+  size                  String?
+  region                String?
+  onboardingGraph       Json?
+  enabledModules        String[]  @default([])
+  onboardingStep        String    @default("admin-setup")
+  completedSteps        String[]  @default([])
+  onboardingCompletedAt DateTime?
+  createdAt             DateTime  @default(now())
 
   users User[]
   roles Role[]
 }
 
 model User {
-  id             String   @id @default(cuid())
-  organizationId String
-  name           String
-  email          String   @unique
-  passwordHash   String
-  createdAt      DateTime @default(now())
+  id                String   @id @default(cuid())
+  organizationId    String
+  name              String
+  email             String   @unique
+  passwordHash      String
+  mustResetPassword Boolean  @default(false)
+  createdAt         DateTime @default(now())
 
   organization Organization @relation(fields: [organizationId], references: [id])
   roles        UserRole[]
@@ -46,6 +50,8 @@ model Role {
   organization Organization     @relation(fields: [organizationId], references: [id])
   users        UserRole[]
   permissions  RolePermission[]
+
+  @@unique([organizationId, name])
 }
 
 model UserRole {

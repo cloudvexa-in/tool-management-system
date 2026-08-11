@@ -1,31 +1,37 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ShoppingCart } from "lucide-react";
-import SalesOverviewCard from "./components/SalesOverviewCard";
+import SalesPipelineBoard from "./components/SalesPipelineBoard";
 import { useSalesOrders } from "./hooks/useSalesOrders";
+import type { SalesOrder, SalesStageId } from "./types";
 
 export default function SalesModule() {
-  const { orders, isLoading } = useSalesOrders();
+  const { orders: fetchedOrders, isLoading } = useSalesOrders();
+  const [orders, setOrders] = useState<SalesOrder[]>([]);
+
+  useEffect(() => {
+    if (fetchedOrders.length > 0) setOrders(fetchedOrders);
+  }, [fetchedOrders]);
+
+  const handleTransition = (orderId: string, nextStage: SalesStageId) => {
+    setOrders((prev) =>
+      prev.map((o) => (o.id === orderId ? { ...o, stage: nextStage } : o)),
+    );
+  };
 
   return (
-    <div className="p-8">
-      <div className="mb-6 flex items-center gap-3">
+    <div className="h-full flex flex-col">
+      <div className="mb-6 flex items-center gap-3 flex-none">
         <ShoppingCart className="h-6 w-6 text-indigo-600" />
         <h1 className="text-2xl font-semibold text-slate-900">Sales & CRM</h1>
       </div>
 
       {isLoading ? (
         <p className="text-sm text-slate-500">Loading orders…</p>
-      ) : orders.length === 0 ? (
-        <p className="text-sm text-slate-500">
-          No sales orders yet. Once your CRM/ERP integration is connected,
-          orders will appear here.
-        </p>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {orders.map((order) => (
-            <SalesOverviewCard key={order.id} order={order} />
-          ))}
+        <div className="flex-1 min-h-0">
+          <SalesPipelineBoard orders={orders} onTransition={handleTransition} />
         </div>
       )}
     </div>

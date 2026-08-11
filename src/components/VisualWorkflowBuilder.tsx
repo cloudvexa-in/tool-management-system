@@ -32,7 +32,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // --- Custom Deletable Edge ---
 function DeletableEdge({
@@ -680,8 +680,17 @@ export default function VisualWorkflowBuilder({
   data: any;
   updateData: any;
 }) {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(
+    data.workflowNodes ?? initialNodes,
+  );
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    data.workflowEdges ?? initialEdges,
+  );
+
+  useEffect(() => {
+    updateData({ workflowNodes: nodes, workflowEdges: edges });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nodes, edges]);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [newNodeForm, setNewNodeForm] = useState({

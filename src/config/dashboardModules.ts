@@ -29,6 +29,18 @@ export interface DashboardModuleConfig {
   icon: LucideIcon;
 }
 
+export const NODE_TYPE_TO_MODULE_KEY: Record<string, DashboardModuleKey> = {
+  salesNode: "sales",
+  engineeringNode: "engineering",
+  ppcNode: "ppc",
+  toolRoomNode: "tool-room",
+  toolPresetterNode: "presetter",
+  machineNode: "machine",
+  productionNode: "production",
+  qualityNode: "quality",
+  warehouseNode: "warehouse",
+};
+
 export const DASHBOARD_MODULES: DashboardModuleConfig[] = [
   {
     key: "sales",

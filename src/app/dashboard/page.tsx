@@ -1,13 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
-
-import { useOnboardingStore } from "@/store/useOnboardingStore";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth/authOptions";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { CheckCircle2, Circle, ArrowRight } from "lucide-react";
 
-export default function Dashboard() {
-  const { completedSteps, isFullyCompleted } = useOnboardingStore();
+export default async function Dashboard() {
+  const session = await getServerSession(authOptions);
+  const organization = session?.user?.organizationId
+    ? await prisma.organization.findUnique({
+        where: { id: session.user.organizationId },
+        select: { completedSteps: true, onboardingCompletedAt: true },
+      })
+    : null;
+
+  const completedSteps = organization?.completedSteps ?? [];
+  const isFullyCompleted = Boolean(organization?.onboardingCompletedAt);
 
   const steps = [
     { id: "org-profile", name: "Organization Profile", required: true },
@@ -23,7 +30,7 @@ export default function Dashboard() {
 
   if (!isFullyCompleted) {
     const requiredDone = steps.filter(
-      (s) => s.required && completedSteps.includes(s.id as any),
+      (s) => s.required && completedSteps.includes(s.id),
     ).length;
     const totalRequired = steps.filter((s) => s.required).length;
 
@@ -57,7 +64,7 @@ export default function Dashboard() {
 
             <div className="divide-y divide-slate-100">
               {steps.map((step) => {
-                const isCompleted = completedSteps.includes(step.id as any);
+                const isCompleted = completedSteps.includes(step.id);
                 return (
                   <div
                     key={step.id}

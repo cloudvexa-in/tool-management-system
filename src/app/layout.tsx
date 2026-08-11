@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ReactQueryProvider from "@/react-query/ReactQueryProvider";
+import NextAuthProvider from "@/auth/sessionProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <NextAuthProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
