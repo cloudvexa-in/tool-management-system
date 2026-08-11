@@ -1,10 +1,5 @@
-import dynamic from "next/dynamic";
-import { ModuleSkeleton } from "@/modules/shared";
-
-const ToolRoomModule = dynamic(() => import("@/modules/tool-room"), {
-  loading: () => <ModuleSkeleton />,
-});
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <ToolRoomModule />;
+  redirect("/dashboard/tool-room/inventory");
 }

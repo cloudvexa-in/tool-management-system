@@ -53,6 +53,13 @@ export const SALES_STAGES = [
 
 export type SalesStageId = (typeof SALES_STAGES)[number]["id"];
 
+export interface SalesOrderAction {
+  type: "approved" | "rejected" | "changes-requested";
+  by: string;
+  at: string;
+  comment?: string;
+}
+
 export interface SalesOrder {
   id: string;
   customerName: string;
@@ -60,4 +67,5 @@ export interface SalesOrder {
   totalValue: number;
   stage: SalesStageId;
   source: "manual" | "webhook";
+  lastAction?: SalesOrderAction;
 }

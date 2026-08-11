@@ -1,10 +1,5 @@
-import dynamic from "next/dynamic";
-import { ModuleSkeleton } from "@/modules/shared";
-
-const ProductionModule = dynamic(() => import("@/modules/production"), {
-  loading: () => <ModuleSkeleton />,
-});
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <ProductionModule />;
+  redirect("/dashboard/production/jobs");
 }

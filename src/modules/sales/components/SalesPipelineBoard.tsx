@@ -10,9 +10,11 @@ import SalesOverviewCard from "./SalesOverviewCard";
 export default function SalesPipelineBoard({
   orders,
   onTransition,
+  onSelect,
 }: {
   orders: SalesOrder[];
   onTransition: (orderId: string, nextStage: SalesStageId) => void;
+  onSelect: (orderId: string) => void;
 }) {
   const handleDragEnd = (result: DropResult) => {
     const { destination, draggableId } = result;
@@ -82,7 +84,7 @@ export default function SalesPipelineBoard({
                           >
                             <SalesOverviewCard
                               order={order}
-                              onTransition={onTransition}
+                              onClick={() => onSelect(order.id)}
                             />
                           </div>
                         )}
